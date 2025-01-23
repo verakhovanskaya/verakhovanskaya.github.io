@@ -130,3 +130,11 @@ header, nav, main, footer {
             margin: 0;
             font-size: 0.9em;
         }
+        img {
+  -webkit-filter: grayscale(1);  /* Webkit */
+  filter: gray;  /* IE6-9 */
+  filter: grayscale(1);  /* W3C */
+  border-radius: 50%;
+   width: 300px;  /* Adjust width as per your standard lab site dimensions */
+            height: auto;  /* Maintain aspect ratio */
+}
