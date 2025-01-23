@@ -130,11 +130,25 @@ header, nav, main, footer {
             margin: 0;
             font-size: 0.9em;
         }
-        img {
-  -webkit-filter: grayscale(1);  /* Webkit */
+
+
+#team img {
+     -webkit-filter: grayscale(1);  /* Webkit */
   filter: gray;  /* IE6-9 */
   filter: grayscale(1);  /* W3C */
-  border-radius: 50%;
-   width: 200px;  /* Adjust width as per your standard lab site dimensions */
-            height: auto;  /* Maintain aspect ratio */
+  border-radius: 50%; /* Optional: Makes images circular */
+  max-width: 150px;   /* Controls size of team member images */
+  margin: 0 auto;
+  display: block;
+}
+
+#team p a {
+  font-weight: bold;
+  color: #007bff; /* Bootstrap primary color */
+  text-decoration: none;
+}
+
+#team p a:hover {
+  color: #0056b3; /* Darker blue on hover */
+  text-decoration: underline;
 }
