@@ -135,6 +135,6 @@ header, nav, main, footer {
   filter: gray;  /* IE6-9 */
   filter: grayscale(1);  /* W3C */
   border-radius: 50%;
-   width: 300px;  /* Adjust width as per your standard lab site dimensions */
+   width: 100px;  /* Adjust width as per your standard lab site dimensions */
             height: auto;  /* Maintain aspect ratio */
 }
