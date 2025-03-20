@@ -1,17 +1,18 @@
 const canvas = document.getElementById("pixelCanvas");
 const ctx = canvas.getContext("2d");
 
-// Resize canvas to match full content height
+// Resize canvas to match viewport
 function initializeCanvas() {
     canvas.width = window.innerWidth;
-    canvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
+    canvas.height = window.innerHeight;
     generateRandomPixels();
 }
 
-// Generate random pixels with a better fading effect
+// Generate random pixels with rectangular fade effect
 function generateRandomPixels() {
     const width = canvas.width;
     const height = canvas.height;
+    const padding = 50; // Padding before it becomes fully white
 
     const imageData = ctx.createImageData(width, height);
 
@@ -19,18 +20,23 @@ function generateRandomPixels() {
         const x = (i / 4) % width;
         const y = Math.floor(i / 4 / width);
 
-        const distanceX = Math.abs(x - width / 2);
-        const distanceY = Math.abs(y - height / 2);
-        const maxDistance = Math.max(width, height) / 2;
-        const distanceFromCenter = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+        // Calculate distance from top/bottom edges
+        const distanceY = Math.min(y, height - y);
+        const maxFadeZone = height / 2 - padding;
 
-        // Adjust probability to ensure full white background near content area
-        const probability = Math.max(0, (distanceFromCenter / maxDistance) - 0.4); 
+        // Define probability based on vertical position
+        let probability;
+        if (distanceY < padding) {
+            probability = 1; // Full blue in padding area
+        } else {
+            probability = Math.max(0, (distanceY - padding) / maxFadeZone);
+        }
+
         const isPixelColored = Math.random() < probability;
 
         if (isPixelColored) {
-            imageData.data[i] = 0;       // Red (set to 0 for blue)
-            imageData.data[i + 1] = 51;   // Green (set to 0 for blue)
+            imageData.data[i] = 0;       // Red (0 for blue)
+            imageData.data[i + 1] = 51;   // Green (0 for blue)
             imageData.data[i + 2] = 204; // Blue (full intensity)
         } else {
             imageData.data[i] = 255;     // Red (white background)
@@ -47,11 +53,11 @@ function generateRandomPixels() {
 // Update canvas size on window resize
 window.addEventListener("resize", initializeCanvas);
 
-// Ensure canvas is positioned absolutely and expands with content
-canvas.style.position = "absolute";
+// Keep it fixed like the original
+canvas.style.position = "fixed";
 canvas.style.top = "0";
 canvas.style.left = "0";
-canvas.style.zIndex = "-1"; // Keep it behind content
+canvas.style.zIndex = "-1"; // Behind content
 
 // Initialize canvas
 initializeCanvas();
