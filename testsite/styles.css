@@ -135,6 +135,22 @@ header, nav, main, footer {
             font-size: 0.9em;
         }
 
+/* Default link styles */
+a {
+    color: #0000cc; /* Main blue */
+    text-decoration: underline;
+    text-decoration-thickness: 1px; /* Adjust underline thickness if needed */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Hover effect: yellow highlight */
+a:hover {
+    background-color: #ffff00; /* Yellow highlight */
+    color: #002244; /* Dark blue for contrast */
+    border-radius: 3px; /* Optional: smooth edges */
+    padding: 2px 5px; /* Optional: slight padding */
+    text-decoration
+
 
 #team img {
      -webkit-filter: grayscale(1);  /* Webkit */
