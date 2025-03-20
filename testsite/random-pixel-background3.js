@@ -4,7 +4,8 @@ const ctx = canvas.getContext("2d");
 // Define main content width and transition parameters
 const mainWidth = 800;  // Fixed width of the white center column
 const transitionWidth = 200; // Controls the blue-to-white fade on the sides
-const topFadeHeight = 40; // Height of the top blue transition
+const topFadeHeight = 80; // Height of the top blue transition
+const bottomFadeHeight = 80; // Height of the bottom blue transition
 
 // Resize canvas to fill the screen
 function initializeCanvas() {
@@ -13,7 +14,7 @@ function initializeCanvas() {
     generateRandomPixels();
 }
 
-// Generate random pixels with a left-right transition effect
+// Generate random pixels with a left-right and top-bottom transition effect
 function generateRandomPixels() {
     const width = canvas.width;
     const height = canvas.height;
@@ -31,15 +32,16 @@ function generateRandomPixels() {
         let isWhite = x >= leftBound && x <= rightBound;
 
         if (!isWhite) {
-            // Calculate horizontal fade effect
+            // Horizontal fade effect (left-right)
             const distanceX = Math.min(Math.abs(x - leftBound), Math.abs(x - rightBound));
             const probabilityX = Math.max(0, distanceX / transitionWidth);
             
-            // Calculate vertical fade effect at the top
-            const probabilityY = y < topFadeHeight ? 1 - (y / topFadeHeight) : 0;
-
-            // Combine probabilities (top fade and left-right fade)
-            const probability = Math.max(probabilityX, probabilityY);
+            // Vertical fade effect (top and bottom)
+            const probabilityTop = y < topFadeHeight ? 1 - (y / topFadeHeight) : 0;
+            const probabilityBottom = y > height - bottomFadeHeight ? 1 - ((height - y) / bottomFadeHeight) : 0;
+            
+            // Combine probabilities (top fade, bottom fade, and left-right fade)
+            const probability = Math.max(probabilityX, probabilityTop, probabilityBottom);
 
             const isPixelColored = Math.random() < probability;
 
@@ -69,3 +71,4 @@ window.addEventListener("resize", initializeCanvas);
 
 // Initialize the random pixel canvas
 initializeCanvas();
+
