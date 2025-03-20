@@ -148,9 +148,8 @@ a:hover {
     background-color: #ffff00; /* Yellow highlight */
     color: #002244; /* Dark blue for contrast */
     border-radius: 3px; /* Optional: smooth edges */
-    padding: 2px 5px; /* Optional: slight padding */
-    text-decoration
-
+   /* padding: 2px 5px;  Optional: slight padding */
+}
 
 #team img {
      -webkit-filter: grayscale(1);  /* Webkit */
