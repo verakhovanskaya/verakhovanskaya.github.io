@@ -12,7 +12,10 @@ function initializeCanvas() {
 function generateRandomPixels() {
     const width = canvas.width;
     const height = canvas.height;
-    const padding = 50; // Padding before it becomes fully white
+    const padding = 50; // Transition gradient height
+
+    const whiteZoneStart = padding;
+    const whiteZoneEnd = height - padding;
 
     const imageData = ctx.createImageData(width, height);
 
@@ -20,16 +23,16 @@ function generateRandomPixels() {
         const x = (i / 4) % width;
         const y = Math.floor(i / 4 / width);
 
-        // Calculate distance from top/bottom edges
-        const distanceY = Math.min(y, height - y);
-        const maxFadeZone = height / 2 - padding;
-
-        // Define probability based on vertical position
         let probability;
-        if (distanceY < padding) {
-            probability = 1; // Full blue in padding area
-        } else {
-            probability = Math.max(0, (distanceY - padding) / maxFadeZone);
+        if (y < whiteZoneStart) { 
+            // Top gradient zone
+            probability = y / padding;  
+        } else if (y > whiteZoneEnd) { 
+            // Bottom gradient zone
+            probability = (height - y) / padding;
+        } else { 
+            // Center white zone
+            probability = 0; 
         }
 
         const isPixelColored = Math.random() < probability;
@@ -53,11 +56,6 @@ function generateRandomPixels() {
 // Update canvas size on window resize
 window.addEventListener("resize", initializeCanvas);
 
-// Keep it fixed like the original
-canvas.style.position = "fixed";
-canvas.style.top = "0";
-canvas.style.left = "0";
-canvas.style.zIndex = "-1"; // Behind content
 
 // Initialize canvas
 initializeCanvas();
