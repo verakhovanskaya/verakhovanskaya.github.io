@@ -1,21 +1,24 @@
 const canvas = document.getElementById("pixelCanvas");
 const ctx = canvas.getContext("2d");
 
-// Resize canvas to match viewport
+// Resize canvas to fill the screen
 function initializeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     generateRandomPixels();
 }
 
-// Generate random pixels with rectangular fade effect
+// Generate random pixels with a rectangular fade effect
 function generateRandomPixels() {
     const width = canvas.width;
     const height = canvas.height;
-    const padding = 50; // Transition gradient height
-
-    const whiteZoneStart = padding;
-    const whiteZoneEnd = height - padding;
+    
+    const paddingX = 50; // Horizontal fade padding
+    const paddingY = 50; // Vertical fade padding
+    const innerStartX = paddingX;
+    const innerEndX = width - paddingX;
+    const innerStartY = paddingY;
+    const innerEndY = height - paddingY;
 
     const imageData = ctx.createImageData(width, height);
 
@@ -23,23 +26,25 @@ function generateRandomPixels() {
         const x = (i / 4) % width;
         const y = Math.floor(i / 4 / width);
 
-        let probability;
-        if (y < whiteZoneStart) { 
-            // Top gradient zone
-            probability = y / padding;  
-        } else if (y > whiteZoneEnd) { 
-            // Bottom gradient zone
-            probability = (height - y) / padding;
-        } else { 
-            // Center white zone
-            probability = 0; 
+        let probability = 0;
+
+        if (x < innerStartX) { 
+            probability = (innerStartX - x) / paddingX; // Left fade
+        } else if (x > innerEndX) { 
+            probability = (x - innerEndX) / paddingX; // Right fade
+        }
+
+        if (y < innerStartY) { 
+            probability = Math.max(probability, (innerStartY - y) / paddingY); // Top fade
+        } else if (y > innerEndY) { 
+            probability = Math.max(probability, (y - innerEndY) / paddingY); // Bottom fade
         }
 
         const isPixelColored = Math.random() < probability;
 
         if (isPixelColored) {
-            imageData.data[i] = 0;       // Red (0 for blue)
-            imageData.data[i + 1] = 51;   // Green (0 for blue)
+            imageData.data[i] = 0;       // Red (set to 0 for blue)
+            imageData.data[i + 1] = 51;   // Green (set to 0 for blue)
             imageData.data[i + 2] = 204; // Blue (full intensity)
         } else {
             imageData.data[i] = 255;     // Red (white background)
@@ -56,6 +61,5 @@ function generateRandomPixels() {
 // Update canvas size on window resize
 window.addEventListener("resize", initializeCanvas);
 
-
-// Initialize canvas
+// Initialize the random pixel canvas
 initializeCanvas();
