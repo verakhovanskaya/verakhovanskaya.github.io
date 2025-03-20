@@ -144,11 +144,11 @@ header, nav, main, footer {
 
 #team p a {
   font-weight: bold;
-  color: #007bff; /* Bootstrap primary color */
+  color: #0000cc; /* Bootstrap primary color */
   text-decoration: none;
 }
 
 #team p a:hover {
-  color: #0056b3; /* Darker blue on hover */
+  color: #000066; /* Darker blue on hover */
   text-decoration: underline;
 }
