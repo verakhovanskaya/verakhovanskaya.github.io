@@ -84,7 +84,7 @@ header, nav, main, footer {
             padding: 40px 20px;
             max-width: 800px;
             margin: auto;
-            background-color: #fff;
+            /*background-color: #fff;*/
             border-radius: 10px;
         }
 
