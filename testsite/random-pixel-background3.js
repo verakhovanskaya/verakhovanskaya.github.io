@@ -4,8 +4,8 @@ const ctx = canvas.getContext("2d");
 // Define main content width and transition parameters
 const mainWidth = 800;  // Fixed width of the white center column
 const transitionWidth = 200; // Controls the blue-to-white fade on the sides
-const topFadeHeight = 100; // Height of the top blue transition
-const bottomFadeHeight = 100; // Height of the bottom blue transition
+const topFadeHeight = 10; // Height of the top blue transition
+const bottomFadeHeight = 10; // Height of the bottom blue transition
 
 // Resize canvas to fill the screen
 function initializeCanvas() {
