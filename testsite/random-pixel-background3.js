@@ -3,11 +3,11 @@ const ctx = canvas.getContext("2d");
 
 // Main white rectangle parameters
 const mainWidth = 800;  // Fixed width of the white area
-const mainHeight = 400; // Fixed height of the white area
+const mainHeight = 800; // Fixed height of the white area
 
 // Padding defines how far the gradient spreads outward
-const paddingX = 40;  // Horizontal gradient spread
-const paddingY = 20;  // Vertical gradient spread
+const paddingX = 80;  // Horizontal gradient spread
+const paddingY = 40;  // Vertical gradient spread
 
 // Resize canvas to fill the screen
 function initializeCanvas() {
