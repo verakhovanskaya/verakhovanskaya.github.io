@@ -85,6 +85,7 @@ header, nav, main, footer {
             max-width: 800px;
             margin: auto;
             /*background-color: #fff;*/
+            background-color: transparent;
             border-radius: 10px;
         }
 
