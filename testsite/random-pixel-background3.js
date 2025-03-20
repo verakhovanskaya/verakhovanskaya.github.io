@@ -2,8 +2,8 @@ const canvas = document.getElementById("pixelCanvas");
 const ctx = canvas.getContext("2d");
 
 // Padding parameters: Adjust how the gradient transitions from white to blue
-const paddingX = 100; // Controls horizontal white space
-const paddingY = 50;  // Controls vertical white space
+const paddingX = 200; // Controls horizontal white space
+const paddingY = 150;  // Controls vertical white space
 
 // Resize canvas to fill the screen
 function initializeCanvas() {
